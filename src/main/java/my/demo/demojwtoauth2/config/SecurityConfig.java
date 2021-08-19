@@ -38,15 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .exceptionHandling()
         .authenticationEntryPoint(jwtAuthenticationEntryPoint)
         .accessDeniedHandler(jwtAccessDeniedHandler)
-
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
         .and()
         .authorizeRequests()
         .antMatchers("/api/v1/hello", "/api/v1/login", "/api/v1/join").permitAll()
         .anyRequest().authenticated()
-
         .and()
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
   }
